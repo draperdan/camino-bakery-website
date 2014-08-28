@@ -32,7 +32,7 @@
 		{% for itemtype in sandwich_list %}
 			<li class="itemtypegroup">
 				<h1 class="itemtypegroup_title" id="{{ itemtype.title|slugify }}">{{ itemtype.title }}</h1>
-				<p class="lead itemtypegroup_description">{{ itemtype.description }}</p>
+				<p class="lead itemtypegroup_description">{{ itemtype.description|markup|safe|removetags:"p" }}</p>
 				<ul class="item_list">
 				{% for item in itemtype.get_items_for_type %}
 					<li class="item">

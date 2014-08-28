@@ -29,12 +29,11 @@
 			<section id="hours" class="row text-left">
 				<div class="col-md-8 col-md-offset-2">
 					<h1><a href="/hours-location/">Hours &amp; Location</a></h1>
-					<ul>
-    					<li><b>Monday&#8211;Thursday</b><span class="separator"></span>7 a.m. to 11 p.m.</li>
-    					<li><b>Friday</b><span class="separator"></span>7 a.m. to midnight</li>
-						<li><b>Saturday</b><span class="separator"></span>8 a.m. to midnight</li>
-						<li><b>Sunday</b><span class="separator"></span>8 a.m. to 8 p.m.</li>
-						</ul>
+                    <ul id="specials_list" class="list-unstyled">
+                    {% for hour in hours_list %}
+                        <li><b>{{ hour.get_day_display }}</b> <span class="separator"></span> {{ hour.open_hour }} to {{ hour.close_hour }}</li>
+                    {% endfor %}
+                    </ul>
     			</div>
     		</section>
     		
