@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block title %}Page not found | {{ block.super }}{% endblock %}
+
+{% block page_type %}detail{% endblock %}
+
+{% block extra_class%}error{% endblock %}
+
+{% block featured_image %}
+<img class="img-responsive" src="{{ STATIC_URL }}img/error_yoda.png" alt="">
+{% endblock %}
+
+{% block lead_content %}
+<section id="about" class="row lead">
+	<div class="col-md-8 col-md-offset-2">
+		<p>Yoda says: &ldquo;You must unlearn what you have learned.&rdquo;
+	</div>
+</section>
+{% endblock %}
+
+{% block primary_content %}
+<section id="error" class="row">
+    <div class="col-md-8 col-md-offset-2">
+		<p>The page you requested was not found on this website.</p>
+		<p>If you're trying to reach a page from a bookmark, the page URL could have changed. You might find what you're looking for by using the navigation located at the top of the page.</p>
+		<p>If you still have trouble finding what you need, you might try <a href="mailto:caminobakery@gmail.com">emailing us</a> for further assistance.</li>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base_menu.html" %}
+
+{% block title %}Catering Menu | {{ block.super }}{% endblock %}
+
+{% load itemtypes markup %}
+
+{% block page_type %}list{% endblock %}
+
+{% block extra_class%}catering{% endblock %}
+
+{% block featured_image %}
+	{% if catering_group.lead_image %}
+		<img class="img-responsive" src="{{ MEDIA_URL }}{{ catering_group.lead_image }}" alt="">
+	{% else %}
+		<img class="img-responsive" src="{{ STATIC_URL }}img/catering_poster.png" alt="">
+	{% endif %}
+{% endblock %}
+
+{% block lead_content %}
+<section id="about" class="row lead">
+	<div class="col-md-8 col-md-offset-2">
+		{{ catering_group.description|markup|safe }}
+		<p class="menu_download"><span class="glyphicon glyphicon-cloud-download"></span> <a href="https://www.dropbox.com/s/d4b49b2rka5clyd/Camino%20Bakery%20Catering%20Menu.pdf">Download a PDF of our catering menu</a></p>
+	</div>
+</section>
+{% endblock %}
+
+{% block primary_content %}
+<section id="menu_items" class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<ul id="itemtypegroup_list">
+		{% for itemtypegroup in catering_list %}
+			<li class="itemtypegroup">
+				<h1 class="itemtypegroup_title">{{ itemtypegroup.title }}</h1>
+				<ul class="item_list">
+				{% for item in itemtypegroup.get_items_for_itemtypegroup %}
+					<li class="item">
+						<p class="item_details"><b>{{ item.name }}</b>
+							<span class="separator"></span>
+							{% if item.one_off_price %}
+							{{ item.one_off_price }}
+							{% else %}
+							{% for size in item.item_type.size.all %}
+								<span class="sizeprice">
+									{{ size.price }}{% if size.size %} ({{ size.size }}){% endif %}
+									{% if forloop.last %}{% else %}
+										<span class="separator"></span>
+									{% endif %}
+								</span>
+							{% endfor %}
+							{% endif %}
+						</p>
+						{% if item.description %}
+							<p class="item_description"><i>{{ item.description|markup|safe|removetags:"p" }}</i></p>
+						{% endif %} 
+					</li>
+				{% endfor %}
+				</ul>
+			</li>
+		{% endfor %}
+		</ul>
+	</div>
+</section>
+{% endblock %}

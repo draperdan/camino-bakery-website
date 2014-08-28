@@ -1,0 +1,306 @@
+/* Camino Bakery styles */
+/* Author: Patrick Beeson, patrick@durangoproductive.com */
+/* Updated: 12/11/2013 */
+
+/* Site */
+body {
+	background-color: #ede8d5;
+}
+
+.container {
+	background-color: #f2f2e8;
+}
+
+footer.container {
+	background-color: #ede8d5;
+	margin-top:20px;
+}
+
+/* Nav */
+.navbar {
+	margin-bottom: 0;
+	border-bottom: none;
+	text-transform: uppercase;
+}
+
+/*.navbar-brand {
+	background: url(http://caminobakery.com/static/img/camino_shell_logo_dark.png) no-repeat center center;
+	text-indent: -9999px;
+	padding: 25px 15px;
+}*/
+
+.navbar-default {
+	background-color: #ede8d5;
+}
+
+.navbar-nav>li>a {
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #000;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	color: #a08a52;
+}
+
+.navbar-default .navbar-nav>.dropdown>a .caret {
+	border-top-color: #000;
+	border-bottom-color: #000;
+}
+
+.navbar-default .navbar-nav>.dropdown>a:hover .caret, .navbar-default .navbar-nav>.dropdown>a:focus .caret {
+	border-top-color: #a08a52;
+	border-bottom-color: #a08a52;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+	color: #a08a52;
+	background-color: #D7CDB2;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+	color: #000;
+	background-color: #D7CDB2;
+}
+
+/* Active pages */
+.home .navbar-brand, .menu #menu, .cake #cakes, .news #news, .catering #catering, .our_story #our_story, .hours #hours_location, .bread_schedule #menu, .alcohol #menu {
+	background-color: #D7CDB2;
+}
+
+/* Footer */
+
+#social_refers ul {
+	list-style: none;
+	padding-top: 25px;
+	padding-bottom: 25px;
+    border-top: 20px solid #a08a52;
+	margin-top: 25px;
+}
+
+#social_refers li {
+	display: inline;
+	padding-right: 20px;
+}
+
+#copyright {
+	margin-top: 10px;
+}
+
+#social_refers a img {
+opacity: 0.5;
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+filter: alpha(opacity = 50);
+-webkit-transition: opacity 0.2s ease-in-out;
+-moz-transition: opacity 0.2s eas-in-out;
+-o-transition: opacity 0.2s ease-in-out;
+transition: opacity 0.2s ease-in-out;
+}
+
+#social_refers a:hover img, #social_refers a:focus img {
+opacity: 1;
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+filter: alpha(opacity = 100);
+}
+
+/* Content */
+#content {
+	padding-top: 25px;
+}
+
+#camino_logo_words {
+	margin: 0 auto;
+}
+
+#about {
+	font-family: 'IM Fell DW Pica', serif;
+}
+
+#about {
+	margin-top: 20px;
+	font-size: 24px;
+	line-height: 1.7em;
+}
+
+#about p, #location_contact p {
+	display: inline;
+}
+
+#hours h1 {
+	font-family: 'Signika Negative', sans-serif;	
+}
+
+#hours h1 {
+	font-size: 18px;
+	color: #a08a52;
+	margin-bottom: 25px;
+}
+
+#hours ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#hours ul li {
+	padding-bottom: 15px;
+}
+
+#hours h1, #hours b {
+	text-transform: uppercase;
+}
+
+#location_contact {
+    padding-top: 25px;
+}
+
+.separator:after {
+	content : " /// ";
+	color: rgb(124,141,133);
+}
+
+.separator_icon {
+	background: url(http://caminobakery.com/static/img/shell_light_brown_15.png) no-repeat center left;
+	padding: 10px;
+	opacity: 0.6;
+}
+
+a {
+	color: #a08a52;
+}
+
+a:hover {
+	color: #6C5C37; 
+}
+
+/* Menu */
+#menu_items ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;	
+}
+
+#menu_items ul li {
+}
+
+.itemtypegroup, .itemtype {
+	margin-bottom: 40px;
+}
+
+.itemtypegroup h2, .itemtype h2 {
+	font-size: 18px;
+	font-family: 'Signika Negative', sans-serif;
+	text-transform: uppercase;
+}
+
+.itemtypegroup_description, .itemtype_description {
+	font-size: 18px;
+}
+
+.itemtypegroup_title, #bread_schedule h1, .itemtype_title {
+	font-family: 'Signika Negative', sans-serif;
+	font-size: 24px;
+	text-transform: uppercase;
+}
+
+.item_description {
+	padding-left: 10px;
+}
+
+.item {
+	margin: 10px 0 10px 0;
+}
+
+.item_details {
+	margin-bottom: 0;
+}
+
+#about .menu_download, .menudownload {
+	font-size: 14px;
+	display: block;
+	margin-bottom: 0;
+}
+
+/* Specials */
+#specials_list li {
+	padding-bottom: 15px;
+}
+
+/* News */
+#latest_story h1, #news_list h1, #story_lead h1 {
+	font-family: 'Signika Negative', sans-serif;
+	text-transform: uppercase;
+	font-size: 24px;
+}
+
+#story_body p {
+	font-size: 16px;
+	line-height: 1.5em;
+	padding-bottom: 10px;
+}
+
+#news_list h2, #story_body h2 {
+	font-family: 'Signika Negative', sans-serif;
+	text-transform: uppercase;
+	font-size: 18px;
+}
+
+#latest_story h1 {
+	margin-top: 30px;
+}
+
+#latest_story .lead {
+	font-family: 'IM Fell DW Pica', serif;
+	line-height: 1.7em;
+	font-size: 24px;
+}
+
+#news_list div {
+	margin-top: 50px;
+}
+
+.pubdate_author {
+	font-style: italic;
+}
+
+.story {
+	margin-bottom: 35px;
+}
+
+/* Bread list and schedule */
+.bread_for_day {
+	margin-bottom: 10px;
+}
+
+/* Flatpage */
+
+#flatpage h2 {
+	font-family: 'Signika Negative', sans-serif;
+	text-transform: uppercase;
+	font-size: 18px;
+}
+
+/* Media queries */
+@media (min-width: 992px) {
+#content {
+	background: url(http://caminobakery.com/static/img/camino_words_dark.png) no-repeat 50px 50px;
+	}
+#list.news .container {
+	background: #f2f2e8 url(http://caminobakery.com/static/img/lead_story_bg_lt.png) no-repeat center 332px;
+	}
+#latest_story div {
+	min-height: 350px;
+	}
+}
+
+@media (min-width: 1200px) {
+#list.news .container {
+	background: #f2f2e8 url(http://caminobakery.com/static/img/lead_story_bg_lt.png) no-repeat center 400px;
+	}
+#latest_story div {
+	min-height: 350px;
+	}
+}

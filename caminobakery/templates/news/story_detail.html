@@ -1,0 +1,43 @@
+{% extends "base_news.html" %}
+
+{% block title %}{{ story.headline }} | {{ block.super }}{% endblock %}
+
+{% load image_utils markup %}
+
+{% block page_type %}detail{% endblock %}
+
+{% block extra_class%}news{% endblock %}
+
+{% block featured_image %}
+<img class="img-responsive" src="{{ story.lead_photo.photo|crop:"1170x400" }}" alt="{{ story.lead_photo.alt_text }}">
+{% endblock %}
+
+{% block lead_content %}
+<section id="story_lead" class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h1><a href="{{ story.get_absolute_url }}">{{ story.headline }}</a></h1>
+		<p class="pubdate_author">Posted {{ story.pub_date|date:"F j, Y" }} by {{ story.author.first_name }} {{ story.author.last_name }}</p>
+	</div>
+</section>
+{% endblock %}
+
+{% block primary_content %}
+<section id="story_body" class="row">
+	<div class="col-md-7 col-md-offset-2">
+		{{ story.body_html|safe }}
+	</div>
+
+	<div class="col-md-2 col-md-offset-1">
+		<h2>Related Stories</h2>
+        {% if story.related_story_set.count %}
+        <ul class="list-unstyled" id="related_stories">
+        {% for related_story in story.related_story_set.all %}
+        	<li><a href="{{ related_story.get_absolute_url }}" title="{{ related_story.headline }}">{{ related_story.headline }}</a></li>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <p>There are no related stories</p>
+        {% endif %}
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base_flatpage.html" %}
+
+{% block title %}{{ flatpage.title }}{{ block.super }}{% endblock %}
+
+{% block page_type %}flatpage{% endblock %}
+
+{% block extra_class%}about{% endblock %}
+
+{% block lead_content %}{% endblock %}
+
+{% block primary_content %}
+{{ flatpage.content }}
+{% endblock %}

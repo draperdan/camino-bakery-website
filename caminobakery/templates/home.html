@@ -1,0 +1,48 @@
+{% extends "base_generic.html" %}
+
+{% block page_specific_js %}
+<script src="{{ STATIC_URL }}js/utilities.js"></script>
+{% endblock %}
+
+{% block page_type %}homepage{% endblock %}
+
+{% block extra_class%}home{% endblock %}
+
+    	{% block featured_image %}
+    		<img class="img-responsive" src="{{ STATIC_URL }}img/homepage_items.png" alt="">
+    	{% endblock %}
+
+{% block lead_content %}
+    		<section id="about" class="row lead">
+    			<div class="col-md-8 col-md-offset-2">
+    			<p>Our humble bakery, coffeehouse, and winebar <a href="hours-location/">on West Fourth Street</a> in downtown Winston-Salem has been open since June of 2011.</p>
+    			<span class="separator_icon"></span>
+    			<p>Every morning we fresh-bake <a href="menu/#breakfast-pastries">breakfast pastries</a>, <a href="menu/#lunch-dinner">hot and cold lunches</a>, <a href="menu/#gourmet-desserts">gourmet desserts</a>, and are ready to craft you <a href="menu/#crafted-coffees">the drink</a> of your choice.</p>
+    			<span class="separator_icon"></span>
+    			<p><a href="hours-location/">We're open</a> today until {% for schedule in hours_list %}{% if schedule.close_time_today %}{% ifequal schedule.close_hour|time:"f" "12" %}{{ schedule.close_hour }}.{% else %}{{ schedule.close_hour }}{% endifequal %}{% endif %}{% endfor %}
+    			<span class="separator_icon"></span>				
+				<p>Today's {% if special_list|length < 2 %}<a href="specials/">special</a> is {% else %}<a href="specials/">specials</a> are {% endif %}<span id="special_today">{% for special in special_list %}{{ special.description }}{% if forloop.last %}.{% else %}{% ifequal forloop.revcounter0 1 %} and {% else %}, {% endifequal %}{% endif %}{% endfor %}</span></p></div>
+			</section>
+{% endblock %}
+
+{% block primary_content %}
+			<section id="hours" class="row text-left">
+				<div class="col-md-8 col-md-offset-2">
+					<h1><a href="/hours-location/">Hours &amp; Location</a></h1>
+					<ul>
+    					<li><b>Monday&#8211;Thursday</b><span class="separator"></span>7 a.m. to 11 p.m.</li>
+    					<li><b>Friday</b><span class="separator"></span>7 a.m. to midnight</li>
+						<li><b>Saturday</b><span class="separator"></span>8 a.m. to midnight</li>
+						<li><b>Sunday</b><span class="separator"></span>8 a.m. to 8 p.m.</li>
+						</ul>
+    			</div>
+    		</section>
+    		
+    		<section id="location_contact" class="row text-left">
+    			<div class="col-md-8 col-md-offset-2">
+    				<p><a href="https://www.google.com/maps/preview#!q=Camino+Bakery%2C+West+4th+Street%2C+Winston-Salem%2C+NC&data=!4m15!2m14!1m13!1s0x8853ae5c9011c86f%3A0x840f13a137af987f!3m8!1m3!1d203621!2d-80.2434579!3d36.104572!3m2!1i1376!2i758!4f13.1!4m2!3d36.098019!4d-80.247518">310B West Fourth Street</a>, Winston-Salem, NC 27101</p>
+					<span class="separator"></span>
+					<p><a href="tel:3367219990" onClick="_gaq.push(['_trackEvent', 'Engagement', 'Call', 'Home']);">336-721-9990</p>
+				</div>
+    		</section>
+{% endblock %}

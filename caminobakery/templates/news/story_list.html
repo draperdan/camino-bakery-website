@@ -1,0 +1,55 @@
+{% extends "base_news.html" %}
+
+{% block title %}News | {{ block.super }}{% endblock %}
+
+{% load image_utils date %}
+
+{% block page_type %}list{% endblock %}
+
+{% block extra_class%}news{% endblock %}
+
+{% block featured_image %}
+<img class="img-responsive" src="{{ latest_story.lead_photo.photo|crop:"1170x400" }}" alt="{{ latest_story.lead_photo.alt_text }}">
+{% endblock %}
+
+{% block lead_content %}
+<section id="latest_story" class="row">
+	<div class="col-md-7 col-md-offset-2">
+		<h1><a href="{{ latest_story.get_absolute_url }}">{{ latest_story.headline }}</a></h1>
+		<p class="lead">{{ latest_story.excerpt|truncatewords:65 }}</p>
+		<p class="pubdate_author">Posted {{ latest_story.pub_date|date:"F j, Y" }} by {{ latest_story.author.first_name }} {{ latest_story.author.last_name }}</p>
+	</div>
+</section>
+{% endblock %}
+
+{% block primary_content %}
+<section id="news_list" class="row">
+	<div class="col-md-7 col-md-offset-2">
+		<ul class="list-unstyled">
+		{% for story in story_list %}
+			{% if forloop.first %}
+			{% else %}
+			<li class="story">
+				<h1><a href="{{ story.get_absolute_url }}">{{ story.headline }}</a></h1>
+				<p>{{ story.excerpt }}</p>
+				<p class="pubdate_author">Posted {{ story.pub_date|date:"F j, Y" }} by {{ story.author.first_name }} {{ story.author.last_name }}</p>
+			</li>
+			{% endif %}
+		{% endfor %}
+		</ul>
+		<div id="pagination">
+			<p>{% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">&laquo; Older stories</a>{% endif %}{% if page_obj.has_previous and page_obj.has_next %} | {% endif %}{% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">Newer stories &raquo;</a>{% endif %}</p>
+		</div>
+	</div>
+
+	<div class="col-md-2 col-md-offset-1">
+		<h2>Archives</h2>
+		{% get_story_month_list as month_list %}
+		<ul class="list-unstyled">
+		{% for month in month_list %}
+			<li><a href="{{ month|date:"Y/M"|lower }}/">{{ month|date:"F Y" }}</a></li>
+		{% endfor %}
+		</ul>
+	</div>
+</section>
+{% endblock %}

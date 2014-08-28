@@ -1,0 +1,57 @@
+{% extends "base_menu.html" %}
+
+{% load itemtypes markup %}
+
+{% block title %}Whole Cakes Menu | {{ block.super }}{% endblock %}
+
+{% block page_type %}list{% endblock %}
+
+{% block extra_class%}cake{% endblock %}
+
+{% block featured_image %}
+	{% if cake_group.lead_image %}
+		<img class="img-responsive" src="{{ MEDIA_URL }}{{ cake_group.lead_image }}" alt="">
+	{% else %}
+		<img class="img-responsive" src="{{ STATIC_URL }}img/whole_cakes.png" alt="Cakes from Camino">
+	{% endif %}
+{% endblock %}
+
+{% block lead_content %}
+<section id="about" class="row lead">
+	<div class="col-md-8 col-md-offset-2">
+		{{ cake_group.description|markup|safe }}
+		<p class="menu_download"><span class="glyphicon glyphicon-cloud-download"></span> <a href="https://www.dropbox.com/s/h9hkta4dc5vgms5/Camino%20Bakery%20Whole%20Cakes%20Menu.pdf">Download a PDF of our whole cakes menu</a></p>
+	</div>
+</section>
+{% endblock %}
+
+{% block primary_content %}
+<section id="menu_items" class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<ul id="itemtype_list">
+		{% for itemtype in cake_list %}
+			<li class="itemtype">
+				<h1 class="itemtype_title">{{ itemtype.title }}</h1>
+				<p class="lead itemtype_description">{{ itemtype.description }}</p>
+				<ul class="size_price_list">
+				{% for size in itemtype.get_size_for_items %}
+					<li class="sizeprice">{{ size.price }} <span class="separator"></span> {{ size.size }} {% if size.description %}{% endif %}</li>
+				{% endfor %}
+				</ul>
+				<ul class="item_list">
+				{% for item in itemtype.get_items_for_type %}
+					<li class="item">
+						<p class="item_details"><b>{{ item.name }}</b>{% if item.is_flourless %}<sup>&dagger;</sup>{% endif %}{% if item.is_vegan %}<sup>&#43;</sup>{% endif %}{% if item.vegan_option_available %}<sup>&sect;</sup>{% endif %}{% if item.flourless_option_available %}<sup>&#42;</sup>{% endif %}</p>
+						{% if item.description %}
+						<p class="item_description"><i>{{ item.description|markup|safe|removetags:"p" }}</i></p>
+						{% endif %} 
+					</li>
+				{% endfor %}
+				</ul>
+			</li>
+		{% endfor %}
+		</ul>
+		<p><small><i>KEY: <sup>&dagger;</sup> flourless; <sup>&#43;</sup> vegan; <sup>&#42;</sup> flourless option available; <sup>&sect;</sup> vegan option available</i></small></p>
+	</div>
+</section>
+{% endblock %}

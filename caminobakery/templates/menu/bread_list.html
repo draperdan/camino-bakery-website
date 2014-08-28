@@ -1,0 +1,76 @@
+{% extends "base_menu.html" %}
+
+{% block title %}Bread List and Schedule | {{ block.super }}{% endblock %}
+
+{% load itemtypes markup %}
+
+{% block page_type %}list{% endblock %}
+
+{% block extra_class%}bread_schedule{% endblock %}
+
+{% block featured_image %}
+	{% if bread_type.lead_image %}
+		<img class="img-responsive" src="{{ MEDIA_URL }}{{ bread_type.lead_image }}" alt="">
+	{% else %}
+		<img class="img-responsive" src="{{ STATIC_URL }}img/bread_poster.png" alt="">
+	{% endif %}
+{% endblock %}
+
+{% block lead_content %}
+<section id="about" class="row lead">
+	<div class="col-md-8 col-md-offset-2">
+		{{ bread_type.description|markup|safe }}
+	</div>
+</section>
+{% endblock %}
+
+
+{% block primary_content %}
+<section id="menu_items" class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<ul id="itemtypegroup_list">
+		{% for itemtype in bread_list %}
+			<li class="itemtypegroup">
+				<h1 class="itemtypegroup_title" id="{{ itemtype.title|slugify }}">{{ itemtype.title }}</h1>
+				<p class="lead itemtypegroup_description">{{ itemtype.description }}</p>
+				<ul class="item_list">
+				{% for item in itemtype.get_items_for_type %}
+					<li class="item">
+						<p class="item_details"><b>{{ item.name }}</b>{% if item.is_flourless %}<sup>&dagger;</sup>{% endif %}{% if item.is_vegan %}<sup>&#43;</sup>{% endif %}{% if item.vegan_option_available %}<sup>&sect;</sup>{% endif %}{% if item.flourless_option_available %}<sup>&#42;</sup>{% endif %}
+						<span class="separator"></span>
+						{% if item.one_off_price %}
+							{{ item.one_off_price }}
+						{% endif %}
+						({% for bread in item.breadschedule_set.all %}{% if bread.is_available_daily %}{{ bread.is_available_daily }}{% else %}{% for day in bread.days_available.all %}{{ day }}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}{% endif %}{% endfor %})					
+						</p>
+						{% if item.description %}
+							<p class="item_description"><i>{{ item.description|markup|safe|removetags:"p" }}</i></p>
+						{% endif %} 
+					</li>
+				{% endfor %}
+				</ul>
+			</li>
+		{% endfor %}
+		</ul>
+		<p><small><i>KEY: <sup>&dagger;</sup> flourless; <sup>&#43;</sup> vegan; <sup>&#42;</sup> flourless option available; <sup>&sect;</sup> vegan option available</i></small></p>
+	</div>
+</section>
+
+<section id="bread_schedule" class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h1>Daily schedule</h1>
+		<ul id="breadschedule" class="list-unstyled">
+		{% for day in day_list %}
+			<li class="bread_for_day"><b>{{ day }}</b>:
+			{% for breadschedule in day.breadschedule_set.all %}
+				{{ breadschedule.bread }}
+				{% if forloop.last %}{% else %}
+					<span class="separator"></span>
+				{% endif %}
+			{% endfor %}
+			</li>
+		{% endfor %}
+		</ul>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base_news.html" %}
+
+{% load date %}
+
+{% block title %}Stories for {{ year|date:"Y" }}{{ block.super }}{% endblock %}
+
+{% block page_type %}list_date{% endblock %}
+
+{% block extra_class %}news{% endblock %}
+
+{% block featured_image %}
+	<img class="img-responsive" src="{{ STATIC_URL }}img/menu_latte.png" alt="Latte from Camino">
+{% endblock %}
+
+{% block lead_content %}
+<section id="about" class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<p>Here are the stories we've published for {{ year|date:"Y" }}.</p>
+	</div>
+</section>
+{% endblock %}
+
+{% block primary_content %}
+<section id="news_list" class="row">
+	<div class="col-md-7 col-md-offset-2">
+		<ul class="list-unstyled">
+		{% for story in story_list %}
+			<li class="story">
+				<h1><a href="{{ story.get_absolute_url }}">{{ story.headline }}</a></h1>
+				<p>{{ story.excerpt }}</p>
+				<p class="pubdate_author">Posted {{ story.pub_date|date:"F j, Y" }} by {{ story.author.first_name }} {{ story.author.last_name }}</p>
+			</li>
+		{% endfor %}
+		</ul>
+		<div id="pagination">
+			<p>{% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">&laquo; Older stories</a>{% endif %}{% if page_obj.has_previous and page_obj.has_next %} | {% endif %}{% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">Newer stories &raquo;</a>{% endif %}</p>
+		</div>
+	</div>
+
+	<div class="col-md-2 col-md-offset-1">
+		<h2>Archives</h2>
+		{% get_story_year_list as year_list %}
+		<ul class="list-unstyled">
+		{% for year in year_list %}
+			<li><a href="/{{ year|date:"Y"|lower }}/">{{ year|date:"Y" }}</a></li>
+		{% endfor %}
+		</ul>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base_hours.html" %}
+
+{% block title %}Hours and Location | {{ block.super }}{% endblock %}
+
+{% block page_type %}list{% endblock %}
+
+{% block extra_class%}hours{% endblock %}
+
+{% block featured_image %}
+<img class="img-responsive" src="{{ STATIC_URL }}img/bread_poster.png" alt="">
+{% endblock %}
+
+{% block lead_content %}
+<section id="about" class="row lead">
+	<div class="col-md-8 col-md-offset-2">
+		<p>310 West Fourth Street, Winston-Salem, NC</p>
+		<span class="separator_icon"></span>
+		<p><a href="tel:3367219990" onClick="_gaq.push(['_trackEvent', 'Engagement', 'Call', 'Hours and Location']);">336-721-9990</a></p>
+		<span class="separator_icon"></span>
+		<p>email us: <a href="mailto:caminobakery@gmail.com" onClick="_gaq.push(['_trackEvent', 'Engagement', 'Email', 'Hours and Location']);">caminobakery@gmail.com</a></p>
+	</div>
+</section>
+{% endblock %}
+
+{% block primary_content %}
+			<section id="hours" class="row">
+				<div class="col-md-3 col-md-offset-2">
+					<ul id="specials_list" class="list-unstyled">
+					{% for schedule in schedule_list %}
+						<li><b>{{ schedule.get_day_display }}</b> <span class="separator"></span> {{ schedule.open_hour }} - {{ schedule.close_hour }}</li>
+					{% endfor %}
+					</ul>	
+    			</div>
+    			<div class="col-md-6 text-left">
+    				<iframe src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x8853ae5c9011c86f%3A0x840f13a137af987f!2sCamino+Bakery%2C+West+4th+Street%2C+Winston-Salem%2C+NC!5e0!3m2!1sen!2sus!4v1386278133664" width="600" height="300" frameborder="0" style="border:0; max-width: 100%;"></iframe>
+    			</div>
+    		</section>	
+{% endblock %}

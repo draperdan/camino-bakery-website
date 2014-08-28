@@ -1,0 +1,29 @@
+{% extends "base_flatpage.html" %}
+
+{% block title %}{{ flatpage.title }} | {{ block.super }}{% endblock %}
+
+{% load markup %}
+
+{% block page_type %}flatpage{% endblock %}
+
+{% block extra_class%}our_story{% endblock %}
+
+{% block featured_image %}
+		<img class="img-responsive" src="{{ STATIC_URL }}img/about_poster.png" alt="About the Camino De Santiago">
+{% endblock %}
+
+{% block lead_content %}
+<section id="about" class="row lead">
+	<div class="col-md-8 col-md-offset-2">
+		<p>Our humble bakery on West Fourth Street in downtown Winston-Salem has been open since June 2011.</p>
+	</div>
+</section>
+{% endblock %}
+
+{% block primary_content %}
+			<section id="hours" class="row text-left">
+				<div class="col-md-8 col-md-offset-2">
+					{{ flatpage.content|markup|safe }}
+    			</div>
+    		</section>
+{% endblock %}

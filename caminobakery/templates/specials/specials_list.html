@@ -1,0 +1,39 @@
+{% extends "base_specials.html" %}
+
+{% block title %}Daily Specials | {{ block.super }}{% endblock %}
+
+{% block page_type %}list{% endblock %}
+
+{% block extra_class%}specials{% endblock %}
+
+{% block featured_image %}
+<img class="img-responsive" src="{{ STATIC_URL }}img/bread_poster.png" alt="Bread from Camino">
+{% endblock %}
+
+{% block lead_content %}
+<section id="about" class="row lead">
+	<div class="col-md-8 col-md-offset-2">
+		<p>We have specials every day of the week!</p>
+	</div>
+</section>
+{% endblock %}
+
+{% block primary_content %}
+			<section id="specials" class="row text-left">
+				<div class="col-md-8 col-md-offset-2">			
+				{% regroup specials_list by get_day_offered_display as day_list %}
+				<ul id="specials_list" class="list-unstyled">
+					{% for get_day_offered_display in day_list %}
+					<li><b>{{ get_day_offered_display.grouper }}</b> <span class="separator"></span>
+						{% for special in get_day_offered_display.list %}
+							{{ special.description }}
+							{% if forloop.last %}{% else %}
+							<span class="separator"></span>
+							{% endif %}
+						{% endfor %}
+					</li>
+					{% endfor %}
+				</ul>	
+    			</div>
+    		</section>	
+{% endblock %}

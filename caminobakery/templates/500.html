@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block title %}Server error | {{ block.super }}{% endblock %}
+
+{% block page_type %}detail{% endblock %}
+
+{% block extra_class %}error{% endblock %}
+
+{% block primary_content %}
+<section id="about" class="row lead">
+    <div class="col-md-8 col-md-offset-2">
+		<h1>Server error</h1>
+		<p>Our website is currently unavailable due to a server error. Please try your request again later.</p>
+	</div>
+</section
+{% endblock %}

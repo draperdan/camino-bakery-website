@@ -1,0 +1,72 @@
+{% extends "base_menu.html" %}
+
+{% block title %}Menu | {{ block.super }}{% endblock %}
+
+{% load itemtypes markup %}
+
+{% block page_type %}list{% endblock %}
+
+{% block extra_class%}menu{% endblock %}
+
+{% block featured_image %}
+    	<img class="img-responsive" src="{{ STATIC_URL }}img/full_menu_poster.png" alt="Full menu from Camino">
+{% endblock %}
+
+{% block lead_content %}
+<section id="about" class="row lead">
+	<div class="col-md-8 col-md-offset-2">
+		<p>Our bakers come in long before you wake up to make fresh <a href="/menu/#breakfast-pastries">breakfast pastries</a> every morning.</p>
+		<span class="separator_icon"></span>
+		<p>Our baristas craft you individual <a href="/menu/#crafted-coffees">coffee drinks and other beverages</a>.</p>
+		<span class="separator_icon"></span>
+		<p>Enjoy a full <a href="/menu/wine-beer">beer and wine</a> menu.</p>
+		<span class="separator_icon"></span>
+		<p>Fill your belly with a hot or cold <a href="/menu#lunch-dinner">lunch</a>.</p>
+		<span class="separator_icon"></span>
+		<p>Satisfy your sweet tooth with our <a href="/menu/#gourmet-desserts">gourmet desserts</a>.</p>
+		<span class="separator_icon"></span>
+		<p><a href="/menu/catering/">Cater</a> your next meeting or bridal shower.</p>
+		<p class="menu_download"><span class="glyphicon glyphicon-cloud-download"></span> <a href="https://www.dropbox.com/s/ec01zcfxzxm9vkx/Camino%20Bakery%20Menu.pdf">Download a PDF of our full menu</a></p>
+	</div>
+</section>
+{% endblock %}
+
+{% block primary_content %}
+<section id="menu_items" class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<ul id="itemtypegroup_list">
+		{% for itemtypegroup in item_list %}
+			<li class="itemtypegroup">
+				<h1 class="itemtypegroup_title" id="{{ itemtypegroup.title|slugify }}">{{ itemtypegroup.title }}</h1>
+				<p class="lead itemtypegroup_description">{{ itemtypegroup.description|markup|safe|removetags:"p" }}</p>
+				<ul class="item_list">
+				{% for item in itemtypegroup.get_items_for_itemtypegroup %}
+					<li class="item">
+						<p class="item_details"><b>{{ item.name }}</b> {% if item.is_flourless %}<sup>&dagger;</sup>{% endif %}{% if item.is_vegan %}<sup>&#43;</sup>{% endif %}{% if item.vegan_option_available %}<sup>&sect;</sup>{% endif %}{% if item.flourless_option_available %}<sup>&#42;</sup>{% endif %}
+							<span class="separator"></span>
+							{% if item.one_off_price %}
+							{{ item.one_off_price }}
+							{% else %}
+							{% for size in item.item_type.size.all %}
+								<span class="sizeprice">
+									{{ size.price }}{% if size.size %} ({{ size.size }}){% endif %}
+									{% if forloop.last %}{% else %}
+										<span class="separator"></span>
+									{% endif %}
+								</span>
+							{% endfor %}
+							{% endif %}
+						</p>
+						{% if item.description %}
+							<p class="item_description"><i>{{ item.description|markup|safe|removetags:"p" }}</i></p>
+						{% endif %} 
+					</li>
+				{% endfor %}
+				</ul>
+			</li>
+		{% endfor %}
+		</ul>
+		<p><small><i>KEY: <sup>&dagger;</sup> flourless; <sup>&#43;</sup> vegan; <sup>&#42;</sup> flourless option available; <sup>&sect;</sup> vegan option available</i></small></p>
+	</div>
+</section>
+{% endblock %}
