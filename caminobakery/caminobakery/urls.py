@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^menu/', include('menu.urls')),
     url(r'^news/', include('news.urls')),
 
+    # Not ready for prime-time
     #url(r'^order/', include('order_form.urls')),
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     url(r'^sitemap-(?P<section>.+).xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),

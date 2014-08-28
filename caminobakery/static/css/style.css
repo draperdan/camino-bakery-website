@@ -23,6 +23,10 @@ footer.container {
 	text-transform: uppercase;
 }
 
+.navbar-collapse {
+	max-height: 100%;
+}
+
 /*.navbar-brand {
 	background: url(http://caminobakery.com/static/img/camino_shell_logo_dark.png) no-repeat center center;
 	text-indent: -9999px;
@@ -284,23 +288,48 @@ a:hover {
 }
 
 /* Media queries */
+@media (min-width: 768px) {
+
+	.navbar-collapse {
+		text-align: center;
+	}
+
+	.navbar-nav>li>a {
+		padding-right: 0px;
+	}
+
+	.navbar-right {
+		float: none !important;
+	}
+}
+
+
+
 @media (min-width: 992px) {
-#content {
-	background: url(http://caminobakery.com/static/img/camino_words_dark.png) no-repeat 50px 50px;
+	
+	#content {
+		background: url(http://caminobakery.com/static/img/camino_words_dark.png) no-repeat 50px 50px;
 	}
-#list.news .container {
-	background: #f2f2e8 url(http://caminobakery.com/static/img/lead_story_bg_lt.png) no-repeat center 332px;
+	#list.news .container {
+		background: #f2f2e8 url(http://caminobakery.com/static/img/lead_story_bg_lt.png) no-repeat center 332px;
 	}
-#latest_story div {
-	min-height: 350px;
+	#latest_story div {
+		min-height: 350px;
+	}
+	.navbar-nav>li>a {
+		padding-right: 15px;
+	}
+
+	.navbar-right {
+		float: right !important;
 	}
 }
 
 @media (min-width: 1200px) {
-#list.news .container {
-	background: #f2f2e8 url(http://caminobakery.com/static/img/lead_story_bg_lt.png) no-repeat center 400px;
-	}
-#latest_story div {
-	min-height: 350px;
-	}
+	#list.news .container {
+		background: #f2f2e8 url(http://caminobakery.com/static/img/lead_story_bg_lt.png) no-repeat center 400px;
+		}
+	#latest_story div {
+		min-height: 350px;
+		}
 }
