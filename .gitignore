@@ -43,6 +43,6 @@ Thumbs.db
 Desktop.ini
 
 # Django
-migrations
 user_uploads
 order_form
+secrets.json

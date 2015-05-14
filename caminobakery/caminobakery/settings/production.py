@@ -2,6 +2,7 @@
 
 from __future__ import absolute_import
 
+import json
 from os import environ
 
 from .base import *
@@ -11,31 +12,37 @@ from .base import *
 from django.core.exceptions import ImproperlyConfigured
 
 
-def get_env_setting(setting):
-    """ Get the environment setting or return exception """
+# SECRETS CONFIGURATION
+secrets_path = normpath(join(SITE_ROOT, 'secrets.json'))
+
+with open(secrets_path) as f:
+    secrets = json.loads(f.read())
+
+
+def get_secret(setting, secrets=secrets):
     try:
-        return environ[setting]
+        return secrets[setting]
     except KeyError:
-        error_msg = "Set the %s env variable" % setting
+        error_msg = "Set the {} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
 
-########## HOST CONFIGURATION
+# HOST CONFIGURATION
 # See: https://docs.djangoproject.com/en/1.5/releases/1.5/#allowed-hosts-required-in-production
 ALLOWED_HOSTS = ['caminobakery.com']
-########## END HOST CONFIGURATION
+# END HOST CONFIGURATION
 
-########## EMAIL CONFIGURATION
+# EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host
-EMAIL_HOST = environ.get('EMAIL_HOST', 'smtp.webfaction.com')
+EMAIL_HOST = get_secret("EMAIL_HOST")
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-password
-EMAIL_HOST_PASSWORD = environ.get('EMAIL_HOST_PASSWORD', 'FourthStreet')
+EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-user
-EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER', 'caminobakery')
+EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-port
 EMAIL_PORT = environ.get('EMAIL_PORT', 587)
@@ -50,24 +57,23 @@ EMAIL_USE_TLS = True
 SERVER_EMAIL = environ.get('SERVER_EMAIL', 'admin@caminobakery.com')
 
 DEFAULT_FROM_EMAIL = environ.get('DEFAULT_FROM_EMAIL', 'admin@caminobakery.com')
-########## END EMAIL CONFIGURATION
+# END EMAIL CONFIGURATION
 
-########## DATABASE CONFIGURATION
+# DATABASE CONFIGURATION
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'caminobakery_production',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': 'caminobakery',
-        'PASSWORD': 'WinstonSalemNC',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': get_secret("DB_NAME"),
+        'USER': get_secret("DB_USER"),
+        'PASSWORD': get_secret("DB_PASSWORD"),
+        'HOST': '',
+        'PORT': '',
     }
 }
-########## END DATABASE CONFIGURATION
+# END DATABASE CONFIGURATION
 
 
-########## CACHE CONFIGURATION
+# CACHE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
 CACHES = {
     'default': {
@@ -80,15 +86,15 @@ CACHES = {
         }
     }
 }
-########## END CACHE CONFIGURATION
+# END CACHE CONFIGURATION
 
 
-########## SECRET CONFIGURATION
+# SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = r"x-8r)c(97bk5z*i36(km!2)9yjizawo-+m77on2k!b1(4k+-0h"
-########## END SECRET CONFIGURATION
+SECRET_KEY = get_secret("SECRET_KEY")
+# END SECRET CONFIGURATION
 
-#OTHER SETTINGS
+# OTHER SETTINGS
 import re
 IGNORABLE_404_URLS = (
     re.compile(r'\.(php|cgi)$'),
