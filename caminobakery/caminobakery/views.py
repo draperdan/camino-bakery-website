@@ -1,7 +1,8 @@
 from django.views.generic import TemplateView
+
 from specials.models import Special
 from hours.models import Schedule
-from menu.models import Item, ItemType
+from announcements.models import Announcement
 
 
 class HomePageView(TemplateView):
@@ -12,6 +13,7 @@ class HomePageView(TemplateView):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['special_list'] = Special.today.all()
         context['hours_list'] = Schedule.objects.all()
+        context['announcement'] = Announcement.public.latest('created')
         return context
 
 

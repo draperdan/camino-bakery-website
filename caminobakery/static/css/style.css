@@ -16,6 +16,33 @@ footer.container {
 	margin-top:20px;
 }
 
+/* Announcements */
+.announcement_bar {
+	background-color: #a08a52;
+	padding: 14px;
+	text-align: center;
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+
+.announcement_bar a {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+}
+
+.announcement_bar p {
+	font-size: 14px;
+	line-height: 1.2em;
+	color: white;
+	margin: 0px;
+	padding: 0px;
+	font-weight: 200;
+}
+
 /* Nav */
 .navbar {
 	margin-bottom: 0;
@@ -138,7 +165,7 @@ filter: alpha(opacity = 100);
 }
 
 #hours h1 {
-	font-family: 'Signika Negative', sans-serif;	
+	font-family: 'Signika Negative', sans-serif;
 }
 
 #hours h1 {
@@ -181,14 +208,14 @@ a {
 }
 
 a:hover {
-	color: #6C5C37; 
+	color: #6C5C37;
 }
 
 /* Menu */
 #menu_items ul {
 	margin: 0;
 	padding: 0;
-	list-style: none;	
+	list-style: none;
 }
 
 #menu_items ul li {
@@ -293,7 +320,9 @@ a:hover {
 
 /* Media queries */
 @media (min-width: 768px) {
-
+	.announcement_bar p {
+		font-size: 18px;
+	}
 	.navbar-collapse {
 		text-align: center;
 		margin-top: 15px;
@@ -316,7 +345,7 @@ a:hover {
 
 
 @media (min-width: 992px) {
-	
+
 	#content {
 		background: url(http://caminobakery.com/static/img/camino_words_dark.png) no-repeat 50px 50px;
 	}

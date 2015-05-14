@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+  <head>
     <title>{% block title %}Camino Bakery{% endblock%}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -11,19 +11,19 @@
     <!--Other styles-->
     <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" media="screen">
    {% endblock %}
-   
+
    {% block page_specific_css %}{% endblock %}
     <link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica|Signika+Negative:700' rel='stylesheet' type='text/css'>
-	
-	<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon">
+
+  <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      	<script src="{{ STATIC_URL }}static/js/html5shiv.js"></script>
-      	<script src="{{ STATIC_URL }}static/js/respond.min.js"></script>
+        <script src="{{ STATIC_URL }}static/js/html5shiv.js"></script>
+        <script src="{{ STATIC_URL }}static/js/respond.min.js"></script>
     <![endif]-->
-		{% block google_analytics %}
+    {% block google_analytics %}
         <script type="text/javascript">
 
             var _gaq = _gaq || [];
@@ -37,46 +37,51 @@
             })();
 
         </script>
-		{% endblock %}
+    {% endblock %}
 
         {% block rss %}
         {% endblock %}
-	</head>
-  	<body id="{%block page_type %}{% endblock %}" class="{% block extra_class%}{% endblock %}">
-  	
-  	<!-- Static navbar -->
-  	<div class="navbar navbar-default navbar-static-top" role="navigation">
-	  	<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/"><img src="{{ STATIC_URL }}img/camino_shell_logo_dark.png" alt=""></a>
-			</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-            	<li class="dropdown" id="menu">
-                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="/menu/">Full Menu</a></li>
-						<li><a href="/menu/#breakfast-pastries">Breakfast Pastries</a></li>
-						<li><a href="/menu/#crafted-coffees">Crafted Coffees</a></li>
-						<li><a href="/menu/#gourmet-desserts">Gourmet Desserts</a></li>
-						<li><a href="/menu/#lunch-dinner">Lunch &amp; Dinner</a></li>
-						<li><a href="/menu/#quick-coffee-and-tea">Quick Coffee &amp; Tea</a></li>
-						<li><a href="/menu/wine-beer/">Wine &amp; Beer</a></li>
-						<li><a href="/menu/bread/">Bread</a></li>
-					</ul>
-				</li>
-				<li id="hours_location"><a href="/hours-location/">Hours &amp; Location</a></li>
-				<li id="cakes"><a href="/menu/cakes/">Cakes</a></li>
-				<li id="catering"><a href="/menu/catering/">Catering</a></li>
-				<li id="news"><a href="/news/">News</a></li>
-				<li id="our_story"><a href="/our-story/">Our Story</a></li>
-			</ul>
+  </head>
+    <body id="{%block page_type %}{% endblock %}" class="{% block extra_class%}{% endblock %}">
+    {% if announcement %}
+    <div class="announcement_bar">
+      {% if announcement.link %}<a href="{{ announcement.link }}"></a>{% endif %}
+			<p>{{ announcement.text }}</p>
+    </div>
+    {% endif %}
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img src="{{ STATIC_URL }}img/camino_shell_logo_dark.png" alt=""></a>
+      </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+              <li class="dropdown" id="menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/menu/">Full Menu</a></li>
+            <li><a href="/menu/#breakfast-pastries">Breakfast Pastries</a></li>
+            <li><a href="/menu/#crafted-coffees">Crafted Coffees</a></li>
+            <li><a href="/menu/#gourmet-desserts">Gourmet Desserts</a></li>
+            <li><a href="/menu/#lunch-dinner">Lunch &amp; Dinner</a></li>
+            <li><a href="/menu/#quick-coffee-and-tea">Quick Coffee &amp; Tea</a></li>
+            <li><a href="/menu/wine-beer/">Wine &amp; Beer</a></li>
+            <li><a href="/menu/bread/">Bread</a></li>
+          </ul>
+        </li>
+        <li id="hours_location"><a href="/hours-location/">Hours &amp; Location</a></li>
+        <li id="cakes"><a href="/menu/cakes/">Cakes</a></li>
+        <li id="catering"><a href="/menu/catering/">Catering</a></li>
+        <li id="news"><a href="/news/">News</a></li>
+        <li id="our_story"><a href="/our-story/">Our Story</a></li>
+      </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li id="online_store">
                     <a href="https://mkt.com/camino-bakery">Shop Online</a>
@@ -85,57 +90,57 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    
-    <div class="container">
-    	
-    	<div id="featured_image" class="row">
-    		{% block featured_image %}{% endblock %}
-    	</div>
-    	
-    	<div id="content">
-			<img id="camino_logo_words" class="visible-xs visible-sm img-responsive" width="300" height="71" src="{{ STATIC_URL }}img/camino_words_horiz.png" alt="">
-			{% block lead_content %}{% endblock %}
-			
-    		{% block primary_content %}{% endblock %}
-    	</div>
 
-    	{% block social %}
-    	<div id="social_refers" class="row">
-		<ul class="visible-xs">
-    		<li><a href="https://twitter.com/CaminoBakery"><img width="30" height="30" src="{{ STATIC_URL }}img/twitter_logo_dark.png" alt=""></a></li>
-    		<li><a href="https://www.facebook.com/pages/Camino-Bakery/199813996798"><img width="30" height="30" src="{{ STATIC_URL }}img/facebook_logo_dark.png" alt=""></a></li>
-    		<li><a href="http://instagram.com/caminobakery"><img width="30" height="30" src="{{ STATIC_URL }}img/instagram_logo_dark.png" alt=""></a></li>
-    		<li><a href="http://www.tripadvisor.com/Restaurant_Review-g49680-d2425502-Reviews-Camino_Bakery-Winston_Salem_North_Carolina.html"><img width="30" height="18" src="{{ STATIC_URL }}img/trip_advisor_logo_dark.png" alt=""></a></li>
-    		<li><a href="http://www.yelp.com/biz/camino-bakery-winston-salem-2"><img width="30" height="30" src="{{ STATIC_URL }}img/yelp_logo_dark.png" alt=""></a></li>
-    	</ul>
-    	<ul class="hidden-xs text-right">
-    		<li><a href="https://twitter.com/CaminoBakery"><img src="{{ STATIC_URL }}img/twitter_logo_dark.png" alt=""></a></li>
-    		<li><a href="https://www.facebook.com/pages/Camino-Bakery/199813996798"><img src="{{ STATIC_URL }}img/facebook_logo_dark.png" alt=""></a></li>
-    		<li><a href="http://instagram.com/caminobakery"><img src="{{ STATIC_URL }}img/instagram_logo_dark.png" alt=""></a></li>
-    		<li><a href="http://www.urbanspoon.com/r/156/1594462/restaurant/Piedmont-Triad/Camino-Bakery-Cafe-Wine-Bar-Winston-Salem"><img src="{{ STATIC_URL }}img/urban_spoon_logo_dark.png" alt=""></a></li>
-    		<li><a href="http://www.tripadvisor.com/Restaurant_Review-g49680-d2425502-Reviews-Camino_Bakery-Winston_Salem_North_Carolina.html"><img src="{{ STATIC_URL }}img/trip_advisor_logo_dark.png" alt=""></a></li>
-    		<li><a href="http://www.yelp.com/biz/camino-bakery-winston-salem-2"><img src="{{ STATIC_URL }}img/yelp_logo_dark.png" alt=""></a></li>
-    	</ul>
-    	</div>
-    	{% endblock %}	
-	
-	</div>
-	
+    <div class="container">
+
+      <div id="featured_image" class="row">
+        {% block featured_image %}{% endblock %}
+      </div>
+
+      <div id="content">
+      <img id="camino_logo_words" class="visible-xs visible-sm img-responsive" width="300" height="71" src="{{ STATIC_URL }}img/camino_words_horiz.png" alt="">
+      {% block lead_content %}{% endblock %}
+
+        {% block primary_content %}{% endblock %}
+      </div>
+
+      {% block social %}
+      <div id="social_refers" class="row">
+    <ul class="visible-xs">
+        <li><a href="https://twitter.com/CaminoBakery"><img width="30" height="30" src="{{ STATIC_URL }}img/twitter_logo_dark.png" alt=""></a></li>
+        <li><a href="https://www.facebook.com/pages/Camino-Bakery/199813996798"><img width="30" height="30" src="{{ STATIC_URL }}img/facebook_logo_dark.png" alt=""></a></li>
+        <li><a href="http://instagram.com/caminobakery"><img width="30" height="30" src="{{ STATIC_URL }}img/instagram_logo_dark.png" alt=""></a></li>
+        <li><a href="http://www.tripadvisor.com/Restaurant_Review-g49680-d2425502-Reviews-Camino_Bakery-Winston_Salem_North_Carolina.html"><img width="30" height="18" src="{{ STATIC_URL }}img/trip_advisor_logo_dark.png" alt=""></a></li>
+        <li><a href="http://www.yelp.com/biz/camino-bakery-winston-salem-2"><img width="30" height="30" src="{{ STATIC_URL }}img/yelp_logo_dark.png" alt=""></a></li>
+      </ul>
+      <ul class="hidden-xs text-right">
+        <li><a href="https://twitter.com/CaminoBakery"><img src="{{ STATIC_URL }}img/twitter_logo_dark.png" alt=""></a></li>
+        <li><a href="https://www.facebook.com/pages/Camino-Bakery/199813996798"><img src="{{ STATIC_URL }}img/facebook_logo_dark.png" alt=""></a></li>
+        <li><a href="http://instagram.com/caminobakery"><img src="{{ STATIC_URL }}img/instagram_logo_dark.png" alt=""></a></li>
+        <li><a href="http://www.urbanspoon.com/r/156/1594462/restaurant/Piedmont-Triad/Camino-Bakery-Cafe-Wine-Bar-Winston-Salem"><img src="{{ STATIC_URL }}img/urban_spoon_logo_dark.png" alt=""></a></li>
+        <li><a href="http://www.tripadvisor.com/Restaurant_Review-g49680-d2425502-Reviews-Camino_Bakery-Winston_Salem_North_Carolina.html"><img src="{{ STATIC_URL }}img/trip_advisor_logo_dark.png" alt=""></a></li>
+        <li><a href="http://www.yelp.com/biz/camino-bakery-winston-salem-2"><img src="{{ STATIC_URL }}img/yelp_logo_dark.png" alt=""></a></li>
+      </ul>
+      </div>
+      {% endblock %}
+
+  </div>
+
     <footer class="text-center container">
-    	{% block copyright %}
-    	<section id="copyright">
-    		<p><small>Copyright &copy; 2013 Camino Bakery</small></p>
-    		<p><img src="{{ STATIC_URL }}img/durango_productive_icon.png" alt="Durango Productive logo"><small>A <a href="http://durangoproductive.com">Durango Productive</a>.</small></p>
-       	</section>
-       	{% endblock %}
+      {% block copyright %}
+      <section id="copyright">
+        <p><small>Copyright &copy; 2013 Camino Bakery</small></p>
+        <p><img src="{{ STATIC_URL }}img/durango_productive_icon.png" alt="Durango Productive logo"><small>A <a href="http://durangoproductive.com">Durango Productive</a>.</small></p>
+         </section>
+         {% endblock %}
     </footer>
-		{% block javascript %}
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    	<script src="//code.jquery.com/jquery.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-		{% endblock %}
-		{% block page_specific_js %}
-		{% endblock %}
-	</body>
+    {% block javascript %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    {% endblock %}
+    {% block page_specific_js %}
+    {% endblock %}
+  </body>
 </html>

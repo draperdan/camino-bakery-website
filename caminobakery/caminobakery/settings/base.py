@@ -219,7 +219,8 @@ LOCAL_APPS = (
     'menu',
     'specials',
     'news',
-    'media'
+    'media',
+    'announcements',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
