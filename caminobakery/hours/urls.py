@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, include, url
-from django.views.generic import ListView
+from django.conf.urls import patterns, url
 
 from .views import HoursView
 
-urlpatterns = patterns('',	
-	url(r'^$', HoursView.as_view()),
+urlpatterns = patterns(
+    '',
+    url(r'^$', HoursView.as_view()),
 )
