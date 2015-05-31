@@ -48,3 +48,5 @@ debug_toolbar
 user_uploads
 order_form
 secrets.json
+user_uploads_old
+caminobakery/caminobakery/settings/local.py
