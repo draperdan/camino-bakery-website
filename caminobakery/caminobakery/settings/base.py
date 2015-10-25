@@ -37,14 +37,6 @@ def get_secret(setting, secrets=secrets):
         error_msg = "Set the {} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
 
-# DEBUG CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = False
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-TEMPLATE_DEBUG = DEBUG
-# END DEBUG CONFIGURATION
-
 
 # MANAGER CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
@@ -55,22 +47,6 @@ ADMINS = (
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 # END MANAGER CONFIGURATION
-
-
-# DATABASE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    }
-}
-# END DATABASE CONFIGURATION
-
 
 # GENERAL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#time-zone

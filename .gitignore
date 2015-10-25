@@ -1,5 +1,6 @@
 # Python bytecode:
 *.py[co]
+__pycache__
 
 # Packaging files:
 *.egg*
@@ -45,8 +46,6 @@ Desktop.ini
 # Django
 admin
 debug_toolbar
-user_uploads
 order_form
 secrets.json
-user_uploads_old
-caminobakery/caminobakery/settings/local.py
+secrets_local.json

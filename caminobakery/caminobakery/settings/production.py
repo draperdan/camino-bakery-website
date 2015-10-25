@@ -11,6 +11,7 @@ from .base import *
 # into your settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
 
+DEBUG = False
 
 # SECRETS CONFIGURATION
 secrets_path = normpath(join(SITE_ROOT, 'secrets.json'))
@@ -87,12 +88,6 @@ CACHES = {
     }
 }
 # END CACHE CONFIGURATION
-
-
-# SECRET CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = get_secret("SECRET_KEY")
-# END SECRET CONFIGURATION
 
 # OTHER SETTINGS
 import re
