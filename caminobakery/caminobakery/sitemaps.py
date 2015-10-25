@@ -9,8 +9,8 @@ class NewsSitemap(Sitemap):
     def items(self):
         return Story.live.all()
 
-	def lastmod(self, obj):
-		return obj.pub_date
+    def lastmod(self, obj):
+        return obj.pub_date
 
-	def location(self, obj):
-		return "/news/%s" % obj.slug
+    def location(self, obj):
+        return "/news/%s" % obj.slug
