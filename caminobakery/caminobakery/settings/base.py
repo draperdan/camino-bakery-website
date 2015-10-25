@@ -3,9 +3,6 @@
 
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
-import json
-
-from django.core.exceptions import ImproperlyConfigured
 
 
 # PATH CONFIGURATION
@@ -22,20 +19,6 @@ SITE_NAME = basename(DJANGO_ROOT)
 # name in our dotted import paths:
 path.append(DJANGO_ROOT)
 # END PATH CONFIGURATION
-
-# SECRETS CONFIGURATION
-secrets_path = normpath(join(SITE_ROOT, 'secrets.json'))
-
-with open(secrets_path) as f:
-    secrets = json.loads(f.read())
-
-
-def get_secret(setting, secrets=secrets):
-    try:
-        return secrets[setting]
-    except KeyError:
-        error_msg = "Set the {} environment variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
 
 
 # MANAGER CONFIGURATION

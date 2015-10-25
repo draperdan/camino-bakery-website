@@ -1,6 +1,8 @@
 from os.path import join, normpath
 import json
 
+from django.core.exceptions import ImproperlyConfigured
+
 from .base import *
 
 # SECRETS CONFIGURATION
