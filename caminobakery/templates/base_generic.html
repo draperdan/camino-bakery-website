@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
   <head>
     <title>{% block title %}Camino Bakery{% endblock%}</title>
@@ -7,21 +8,21 @@
     <meta name="description" content="{% block meta_description %}Camino Bakery is a bakery, coffeehouse and winebar located in downtown Winston-Salem, NC.{% endblock %}">
     {% block css %}
     <!-- Bootstrap -->
-    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
     <!--Other styles-->
-    <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" media="screen">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" media="screen">
    {% endblock %}
 
    {% block page_specific_css %}{% endblock %}
     <link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica|Signika+Negative:700' rel='stylesheet' type='text/css'>
 
-  <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-        <script src="{{ STATIC_URL }}static/js/html5shiv.js"></script>
-        <script src="{{ STATIC_URL }}static/js/respond.min.js"></script>
+        <script src="{% static 'static/js/html5shiv.js' %}"></script>
+        <script src="{% static 'static/js/respond.min.js' %}"></script>
     <![endif]-->
     {% block google_analytics %}
         <script type="text/javascript">
@@ -59,7 +60,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/"><img src="{{ STATIC_URL }}img/camino_shell_logo_dark.png" alt=""></a>
+        <a class="navbar-brand" href="/"><img src="{% static 'img/camino_shell_logo_dark.png' %}" alt=""></a>
       </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -98,7 +99,7 @@
       </div>
 
       <div id="content">
-      <img id="camino_logo_words" class="visible-xs visible-sm img-responsive" width="300" height="71" src="{{ STATIC_URL }}img/camino_words_horiz.png" alt="">
+      <img id="camino_logo_words" class="visible-xs visible-sm img-responsive" width="300" height="71" src="{% static 'img/camino_words_horiz.png' %}" alt="">
       {% block lead_content %}{% endblock %}
 
         {% block primary_content %}{% endblock %}
@@ -107,19 +108,19 @@
       {% block social %}
       <div id="social_refers" class="row">
     <ul class="visible-xs">
-        <li><a href="https://twitter.com/CaminoBakery"><img width="30" height="30" src="{{ STATIC_URL }}img/twitter_logo_dark.png" alt=""></a></li>
-        <li><a href="https://www.facebook.com/pages/Camino-Bakery/199813996798"><img width="30" height="30" src="{{ STATIC_URL }}img/facebook_logo_dark.png" alt=""></a></li>
-        <li><a href="http://instagram.com/caminobakery"><img width="30" height="30" src="{{ STATIC_URL }}img/instagram_logo_dark.png" alt=""></a></li>
-        <li><a href="http://www.tripadvisor.com/Restaurant_Review-g49680-d2425502-Reviews-Camino_Bakery-Winston_Salem_North_Carolina.html"><img width="30" height="18" src="{{ STATIC_URL }}img/trip_advisor_logo_dark.png" alt=""></a></li>
-        <li><a href="http://www.yelp.com/biz/camino-bakery-winston-salem-2"><img width="30" height="30" src="{{ STATIC_URL }}img/yelp_logo_dark.png" alt=""></a></li>
+        <li><a href="https://twitter.com/CaminoBakery"><img width="30" height="30" src="{% static 'img/twitter_logo_dark.png' %}" alt=""></a></li>
+        <li><a href="https://www.facebook.com/pages/Camino-Bakery/199813996798"><img width="30" height="30" src="{% static 'img/facebook_logo_dark.png' %}" alt=""></a></li>
+        <li><a href="http://instagram.com/caminobakery"><img width="30" height="30" src="{% static 'img/instagram_logo_dark.png' %}" alt=""></a></li>
+        <li><a href="http://www.tripadvisor.com/Restaurant_Review-g49680-d2425502-Reviews-Camino_Bakery-Winston_Salem_North_Carolina.html"><img width="30" height="18" src="{% static 'img/trip_advisor_logo_dark.png' %}" alt=""></a></li>
+        <li><a href="http://www.yelp.com/biz/camino-bakery-winston-salem-2"><img width="30" height="30" src="{% static 'img/yelp_logo_dark.png' %}" alt=""></a></li>
       </ul>
       <ul class="hidden-xs text-right">
-        <li><a href="https://twitter.com/CaminoBakery"><img src="{{ STATIC_URL }}img/twitter_logo_dark.png" alt=""></a></li>
-        <li><a href="https://www.facebook.com/pages/Camino-Bakery/199813996798"><img src="{{ STATIC_URL }}img/facebook_logo_dark.png" alt=""></a></li>
-        <li><a href="http://instagram.com/caminobakery"><img src="{{ STATIC_URL }}img/instagram_logo_dark.png" alt=""></a></li>
-        <li><a href="http://www.urbanspoon.com/r/156/1594462/restaurant/Piedmont-Triad/Camino-Bakery-Cafe-Wine-Bar-Winston-Salem"><img src="{{ STATIC_URL }}img/urban_spoon_logo_dark.png" alt=""></a></li>
-        <li><a href="http://www.tripadvisor.com/Restaurant_Review-g49680-d2425502-Reviews-Camino_Bakery-Winston_Salem_North_Carolina.html"><img src="{{ STATIC_URL }}img/trip_advisor_logo_dark.png" alt=""></a></li>
-        <li><a href="http://www.yelp.com/biz/camino-bakery-winston-salem-2"><img src="{{ STATIC_URL }}img/yelp_logo_dark.png" alt=""></a></li>
+        <li><a href="https://twitter.com/CaminoBakery"><img src="{% static 'img/twitter_logo_dark.png' %}" alt=""></a></li>
+        <li><a href="https://www.facebook.com/pages/Camino-Bakery/199813996798"><img src="{% static 'img/facebook_logo_dark.png' %}" alt=""></a></li>
+        <li><a href="http://instagram.com/caminobakery"><img src="{% static 'img/instagram_logo_dark.png' %}" alt=""></a></li>
+        <li><a href="http://www.urbanspoon.com/r/156/1594462/restaurant/Piedmont-Triad/Camino-Bakery-Cafe-Wine-Bar-Winston-Salem"><img src="{% static 'img/urban_spoon_logo_dark.png' %}" alt=""></a></li>
+        <li><a href="http://www.tripadvisor.com/Restaurant_Review-g49680-d2425502-Reviews-Camino_Bakery-Winston_Salem_North_Carolina.html"><img src="{% static 'img/trip_advisor_logo_dark.png' %}" alt=""></a></li>
+        <li><a href="http://www.yelp.com/biz/camino-bakery-winston-salem-2"><img src="{% static 'img/yelp_logo_dark.png' %}" alt=""></a></li>
       </ul>
       </div>
       {% endblock %}
@@ -130,7 +131,7 @@
       {% block copyright %}
       <section id="copyright">
         <p><small>Copyright &copy; 2013 Camino Bakery</small></p>
-        <p><img src="{{ STATIC_URL }}img/durango_productive_icon.png" alt="Durango Productive logo"><small>A <a href="http://durangoproductive.com">Durango Productive</a>.</small></p>
+        <p><img src="{% static 'img/durango_productive_icon.png' %}" alt="Durango Productive logo"><small>A <a href="http://durangoproductive.com">Durango Productive</a>.</small></p>
          </section>
          {% endblock %}
     </footer>
@@ -138,7 +139,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="//code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
     {% endblock %}
     {% block page_specific_js %}
     {% endblock %}

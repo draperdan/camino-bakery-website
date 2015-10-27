@@ -1,6 +1,6 @@
 {% extends "base_menu.html" %}
 
-{% load itemtypes markup %}
+{% load itemtypes markup staticfiles %}
 
 {% block title %}Whole Cakes Menu | {{ block.super }}{% endblock %}
 
@@ -12,7 +12,7 @@
 	{% if cake_group.lead_image %}
 		<img class="img-responsive" src="{{ MEDIA_URL }}{{ cake_group.lead_image }}" alt="">
 	{% else %}
-		<img class="img-responsive" src="{{ STATIC_URL }}img/whole_cakes.png" alt="Cakes from Camino">
+		<img class="img-responsive" src="{% static 'img/whole_cakes.png' %}" alt="Cakes from Camino">
 	{% endif %}
 {% endblock %}
 
@@ -44,7 +44,7 @@
 						<p class="item_details"><b>{{ item.name }}</b>{% if item.is_flourless %}<sup>&dagger;</sup>{% endif %}{% if item.is_vegan %}<sup>&#43;</sup>{% endif %}{% if item.vegan_option_available %}<sup>&sect;</sup>{% endif %}{% if item.flourless_option_available %}<sup>&#42;</sup>{% endif %}</p>
 						{% if item.description %}
 						<p class="item_description"><i>{{ item.description|markup|safe|removetags:"p" }}</i></p>
-						{% endif %} 
+						{% endif %}
 					</li>
 				{% endfor %}
 				</ul>

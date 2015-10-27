@@ -2,7 +2,7 @@
 
 {% block title %}Bread List and Schedule | {{ block.super }}{% endblock %}
 
-{% load itemtypes markup %}
+{% load itemtypes markup staticfiles %}
 
 {% block page_type %}list{% endblock %}
 
@@ -12,7 +12,7 @@
 	{% if bread_type.lead_image %}
 		<img class="img-responsive" src="{{ MEDIA_URL }}{{ bread_type.lead_image }}" alt="">
 	{% else %}
-		<img class="img-responsive" src="{{ STATIC_URL }}img/bread_poster.png" alt="">
+		<img class="img-responsive" src="{% static 'img/bread_poster.png' %}" alt="">
 	{% endif %}
 {% endblock %}
 
@@ -41,11 +41,11 @@
 						{% if item.one_off_price %}
 							{{ item.one_off_price }}
 						{% endif %}
-						({% for bread in item.breadschedule_set.all %}{% if bread.is_available_daily %}{{ bread.is_available_daily }}{% else %}{% for day in bread.days_available.all %}{{ day }}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}{% endif %}{% endfor %})					
+						({% for bread in item.breadschedule_set.all %}{% if bread.is_available_daily %}{{ bread.is_available_daily }}{% else %}{% for day in bread.days_available.all %}{{ day }}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}{% endif %}{% endfor %})
 						</p>
 						{% if item.description %}
 							<p class="item_description"><i>{{ item.description|markup|safe|removetags:"p" }}</i></p>
-						{% endif %} 
+						{% endif %}
 					</li>
 				{% endfor %}
 				</ul>

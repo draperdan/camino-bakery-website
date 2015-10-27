@@ -1,4 +1,5 @@
 {% extends "base_hours.html" %}
+{% load staticfiles %}
 
 {% block title %}Hours and Location | {{ block.super }}{% endblock %}
 
@@ -7,7 +8,7 @@
 {% block extra_class%}hours{% endblock %}
 
 {% block featured_image %}
-<img class="img-responsive" src="{{ STATIC_URL }}img/bread_poster.png" alt="">
+<img class="img-responsive" src="{% static 'img/bread_poster.png' %}" alt="">
 {% endblock %}
 
 {% block lead_content %}
@@ -29,10 +30,10 @@
 					{% for schedule in schedule_list %}
 						<li><b>{{ schedule.get_day_display }}</b> <span class="separator"></span> {{ schedule.open_hour }} - {{ schedule.close_hour }}</li>
 					{% endfor %}
-					</ul>	
+					</ul>
     			</div>
     			<div class="col-md-6 text-left">
     				<iframe src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x8853ae5c9011c86f%3A0x840f13a137af987f!2sCamino+Bakery%2C+West+4th+Street%2C+Winston-Salem%2C+NC!5e0!3m2!1sen!2sus!4v1386278133664" width="600" height="300" frameborder="0" style="border:0; max-width: 100%;"></iframe>
     			</div>
-    		</section>	
+    		</section>
 {% endblock %}

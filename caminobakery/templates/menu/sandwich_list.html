@@ -2,7 +2,7 @@
 
 {% block title %}Sandwiches | {{ block.super }}{% endblock %}
 
-{% load markup %}
+{% load markup staticfiles %}
 
 {% block page_type %}list{% endblock %}
 
@@ -12,7 +12,7 @@
 	{% if sandwich_type.lead_image %}
 		<img class="img-responsive" src="{{ MEDIA_URL }}{{ sandwich_type.lead_image }}" alt="">
 	{% else %}
-		<img class="img-responsive" src="{{ STATIC_URL }}img/whole_cakes.png" alt="">
+		<img class="img-responsive" src="{% static 'img/whole_cakes.png' %}" alt="">
 	{% endif %}
 {% endblock %}
 
@@ -40,11 +40,11 @@
 						<span class="separator"></span>
 						{% if item.one_off_price %}
 							{{ item.one_off_price }}
-						{% endif %}				
+						{% endif %}
 						</p>
 						{% if item.description %}
 							<p class="item_description"><i>{{ item.description|markup|safe|removetags:"p" }}</i></p>
-						{% endif %} 
+						{% endif %}
 					</li>
 				{% endfor %}
 				</ul>

@@ -1,4 +1,5 @@
 {% extends "base_flatpage.html" %}
+{% load staticfiles %}
 
 {% block title %}{{ flatpage.title }} | {{ block.super }}{% endblock %}
 
@@ -9,7 +10,7 @@
 {% block extra_class%}our_story{% endblock %}
 
 {% block featured_image %}
-		<img class="img-responsive" src="{{ STATIC_URL }}img/about_poster.png" alt="About the Camino De Santiago">
+		<img class="img-responsive" src="{% static 'img/about_poster.png' %}" alt="About the Camino De Santiago">
 {% endblock %}
 
 {% block lead_content %}

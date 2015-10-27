@@ -2,14 +2,14 @@
 
 {% block title %}Menu | {{ block.super }}{% endblock %}
 
-{% load itemtypes markup %}
+{% load itemtypes markup staticfiles %}
 
 {% block page_type %}list{% endblock %}
 
 {% block extra_class%}menu{% endblock %}
 
 {% block featured_image %}
-    	<img class="img-responsive" src="{{ STATIC_URL }}img/full_menu_poster.png" alt="Full menu from Camino">
+    	<img class="img-responsive" src="{% static 'img/full_menu_poster.png' %}" alt="Full menu from Camino">
 {% endblock %}
 
 {% block lead_content %}
@@ -59,7 +59,7 @@
 						</p>
 						{% if item.description %}
 							<p class="item_description"><i>{{ item.description|markup|safe|removetags:"p" }}</i></p>
-						{% endif %} 
+						{% endif %}
 					</li>
 				{% endfor %}
 				</ul>

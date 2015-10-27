@@ -2,7 +2,7 @@
 
 {% block title %}Catering Menu | {{ block.super }}{% endblock %}
 
-{% load itemtypes markup %}
+{% load itemtypes markup staticfiles %}
 
 {% block page_type %}list{% endblock %}
 
@@ -12,7 +12,7 @@
 	{% if catering_group.lead_image %}
 		<img class="img-responsive" src="{{ MEDIA_URL }}{{ catering_group.lead_image }}" alt="">
 	{% else %}
-		<img class="img-responsive" src="{{ STATIC_URL }}img/catering_poster.png" alt="">
+		<img class="img-responsive" src="{% static 'img/catering_poster.png' %}" alt="">
 	{% endif %}
 {% endblock %}
 
@@ -52,7 +52,7 @@
 						</p>
 						{% if item.description %}
 							<p class="item_description"><i>{{ item.description|markup|safe|removetags:"p" }}</i></p>
-						{% endif %} 
+						{% endif %}
 					</li>
 				{% endfor %}
 				</ul>

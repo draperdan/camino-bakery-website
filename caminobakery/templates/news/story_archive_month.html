@@ -1,6 +1,6 @@
 {% extends "base_news.html" %}
 
-{% load date %}
+{% load date staticfiles %}
 
 {% block title %}Stories for {{ month|date:"F Y" }}{{ block.super }}{% endblock %}
 
@@ -9,7 +9,7 @@
 {% block extra_class %}news{% endblock %}
 
 {% block featured_image %}
-	<img class="img-responsive" src="{{ STATIC_URL }}img/menu_latte.png" alt="Latte from Camino">
+	<img class="img-responsive" src="{% static 'img/menu_latte.png' %}" alt="Latte from Camino">
 {% endblock %}
 
 {% block lead_content %}

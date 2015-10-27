@@ -1,5 +1,7 @@
 {% extends "base_specials.html" %}
 
+{% load staticfiles %}
+
 {% block title %}Daily Specials | {{ block.super }}{% endblock %}
 
 {% block page_type %}list{% endblock %}
@@ -7,7 +9,7 @@
 {% block extra_class%}specials{% endblock %}
 
 {% block featured_image %}
-<img class="img-responsive" src="{{ STATIC_URL }}img/bread_poster.png" alt="Bread from Camino">
+<img class="img-responsive" src="{% static 'img/bread_poster.png' %}" alt="Bread from Camino">
 {% endblock %}
 
 {% block lead_content %}
@@ -20,7 +22,7 @@
 
 {% block primary_content %}
 			<section id="specials" class="row text-left">
-				<div class="col-md-8 col-md-offset-2">			
+				<div class="col-md-8 col-md-offset-2">
 				{% regroup specials_list by get_day_offered_display as day_list %}
 				<ul id="specials_list" class="list-unstyled">
 					{% for get_day_offered_display in day_list %}
@@ -33,7 +35,7 @@
 						{% endfor %}
 					</li>
 					{% endfor %}
-				</ul>	
+				</ul>
     			</div>
-    		</section>	
+    		</section>
 {% endblock %}
