@@ -44,8 +44,8 @@ Thumbs.db
 Desktop.ini
 
 # Django
-admin
 debug_toolbar
 order_form
 secrets.json
 secrets_local.json
+user_uploads

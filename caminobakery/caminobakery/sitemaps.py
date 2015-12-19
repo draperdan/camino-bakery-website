@@ -1,6 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from news.models import Story
-import datetime
+
 
 class NewsSitemap(Sitemap):
     changefreq = 'weekly'
