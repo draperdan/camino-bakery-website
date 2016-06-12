@@ -1,12 +1,13 @@
-import datetime
 from datetime import date
-from datetime import time
 
 from django.db import models
 
+
 class SpecialTodayManager(models.Manager):
     def get_query_set(self):
-        return super(SpecialTodayManager, self).get_query_set().filter(day_offered=date.today().weekday())
+        return super(SpecialTodayManager, self).get_query_set().filter(
+            day_offered=date.today().weekday())
+
 
 class Special(models.Model):
     MONDAY_SPECIAL = 0
@@ -25,7 +26,8 @@ class Special(models.Model):
         (SATURDAY_SPECIAL, 'Saturday'),
         (SUNDAY_SPECIAL, 'Sunday'),
     )
-    description = models.CharField(max_length=250, help_text='Limited to 250 characters.')
+    description = models.CharField(
+        max_length=250, help_text='Limited to 250 characters.')
     day_offered = models.IntegerField(choices=SPECIAL_CHOICES)
     objects = models.Manager()
     today = SpecialTodayManager()

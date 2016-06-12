@@ -1,8 +1,7 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import HoursView
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$', HoursView.as_view()),
-)
+]

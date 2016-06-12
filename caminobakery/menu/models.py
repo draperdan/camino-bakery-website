@@ -17,7 +17,9 @@ class Item(models.Model):
         (DRAFT_STATUS, 'Draft'),
     )
     name = models.CharField(
-        max_length='250', help_text='Limited to 250 characters.')
+        max_length=250,
+        help_text='Limited to 250 characters.'
+    )
     slug = models.SlugField(
         unique=True,
         help_text='Suggested value automatically generated from name. '
@@ -72,7 +74,7 @@ class Item(models.Model):
 
 class Size(models.Model):
     size = models.CharField(
-        max_length='100',
+        max_length=100,
         help_text='Limited to 100 characters. '
         'Use either numerical or text-based characters.'
     )

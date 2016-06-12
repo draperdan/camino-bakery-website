@@ -89,12 +89,6 @@ CACHES = {
 }
 # END CACHE CONFIGURATION
 
-OPBEAT = {
-    'ORGANIZATION_ID': get_secret('ORGANIZATION_ID'),
-    'APP_ID': get_secret('APP_ID'),
-    'SECRET_TOKEN': get_secret('SECRET_TOKEN'),
-}
-
 # OTHER SETTINGS
 import re
 IGNORABLE_404_URLS = (

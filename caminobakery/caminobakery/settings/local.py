@@ -33,6 +33,10 @@ DATABASES = {
 }
 # END DATABASE CONFIGURATION
 
+SECRET_KEY = get_secret('SECRET_KEY')
+
+INSTALLED_APPS += ('debug_toolbar', )
+
 # DEBUG CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = True

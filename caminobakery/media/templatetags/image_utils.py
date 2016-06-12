@@ -1,5 +1,4 @@
 import os
-from PIL import Image
 from django.template import Library
 
 register = Library()
@@ -8,6 +7,7 @@ FMT = 'JPEG'
 EXT = 'jpg'
 QUAL = 100
 
+
 def resized_path(path, size, method):
     "Returns the path for the resized image."
 
@@ -15,15 +15,16 @@ def resized_path(path, size, method):
     image_name, ext = name.rsplit('.', 1)
     return os.path.join(dir, '%s_%s_%s.%s' % (image_name, method, size, EXT))
 
+
 @register.filter
 def scale(imagefield, size, method='scale'):
-    """ 
+    """
     Template filter used to scale an image
     that will fit inside the defined area.
 
     Returns the url of the resized image.
 
-    	{{ profile.picture|scale:"48x48" }}
+        {{ profile.picture|scale:"48x48" }}
     """
 
     # imagefield can be a dict with "path" and "url" keys
@@ -61,8 +62,8 @@ def scale(imagefield, size, method='scale'):
             except ImportError:
                 from PIL import ImageOps
 
-            ImageOps.fit(image, (width, height), Image.ANTIALIAS
-                        ).save(image_path, FMT, quality=QUAL)
+            ImageOps.fit(image, (width, height), Image.ANTIALIAS).save(
+                image_path, FMT, quality=QUAL)
 
     return resized_path(imagefield.url, size, method)
 
@@ -73,7 +74,7 @@ def crop(imagefield, size):
     Template filter used to crop an image
     to make it fill the defined area.
 
-    	{{ profile.picture|crop:"48x48" }}
+        {{ profile.picture|crop:"48x48" }}
 
     """
     return scale(imagefield, size, 'crop')
