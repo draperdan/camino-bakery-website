@@ -12,3 +12,5 @@ DATABASES = {
         "PORT": "",
     },
 }
+
+SECRET_TOKEN = "4ffaqwqweqwe675f3a4e1127250fccb6fbbac59a41"
