@@ -12,3 +12,5 @@ DATABASES = {
         "PORT": "",
     },
 }
+
+SECRET_KEY = "4ffaqwqweqwe675f3a4e1127250fccb6fbbac59a41"

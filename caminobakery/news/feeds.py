@@ -10,42 +10,45 @@ from categories.models import Category
 
 current_site = Site.objects.get_current()
 
+
 class LatestStories(Feed):
-	description_template = 'feeds/news_description.html'
-	title_template = 'feeds/news_title.html'
-	title = "Latest news | %s" % current_site.name
-	link = "http://caminobakery.com/news/"
-	description = "Latest stories from Camino Bakery."
+    description_template = 'feeds/news_description.html'
+    title_template = 'feeds/news_title.html'
+    title = "Latest news | %s" % current_site.name
+    link = "http://caminobakery.com/news/"
+    description = "Latest stories from Camino Bakery."
 
-	def items(self):
-		return Story.live.filter(pub_date__lte=datetime.datetime.now())[:10]
-		
-	def item_title(self, item):
-		return item.headline
-		
-	def item_description(self, item):
-		return item.excerpt
+    def items(self):
+        return Story.live.filter(pub_date__lte=datetime.datetime.now())[:10]
 
-	def item_pubdate(self, item):
-		return item.pub_date
-        
+    def item_title(self, item):
+        return item.headline
+
+    def item_description(self, item):
+        return item.excerpt
+
+    def item_pubdate(self, item):
+        return item.pub_date
+
+
 class LatestStoriesByCategory(Feed):
-	description_template = 'feeds/categories_description.html'
-	title_template = 'feeds/categories_title.html'
-	
-	def get_object(self, request, slug):
-		return get_object_or_404(Category, slug=slug)
-		
-	def title(self, obj):
-		return "Stories for %s category | %s" % (obj.title, current_site.name)
-	
-	def link(self, obj):
-		if not obj:
-			raise FeedDoesNotExist
-		return obj.get_absolute_url()
-	
-	def description(self, obj):
-		return "%s" % obj.description
+    description_template = 'feeds/categories_description.html'
+    title_template = 'feeds/categories_title.html'
 
-	def items(self, obj):
-		return Story.live.filter(categories__slug__exact=obj.slug).order_by('-pub_date')[:10]
+    def get_object(self, request, slug):
+        return get_object_or_404(Category, slug=slug)
+
+    def title(self, obj):
+        return "Stories for %s category | %s" % (obj.title, current_site.name)
+
+    def link(self, obj):
+        if not obj:
+            raise FeedDoesNotExist
+        return obj.get_absolute_url()
+
+    def description(self, obj):
+        return "%s" % obj.description
+
+    def items(self, obj):
+        return Story.live.filter(
+            categories__slug__exact=obj.slug).order_by('-pub_date')[:10]

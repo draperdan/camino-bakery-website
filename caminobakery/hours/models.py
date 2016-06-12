@@ -1,8 +1,7 @@
-import datetime
 from datetime import date
-from datetime import time
 
 from django.db import models
+
 
 class Schedule(models.Model):
     MONDAY_SCHEDULE = 0

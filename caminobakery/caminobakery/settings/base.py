@@ -25,6 +25,7 @@ path.append(DJANGO_ROOT)
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = (
     ('Patrick Beeson', 'patrickbeeson@gmail.com'),
+    ('Lindsay Beeson', 'lindsaybeeson@gmail.com')
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
@@ -48,7 +49,7 @@ USE_I18N = True
 USE_L10N = True
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
-USE_TZ = False
+USE_TZ = True
 # END GENERAL CONFIGURATION
 
 
@@ -79,28 +80,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 # END STATIC FILE CONFIGURATION
-
-
-# SECRET CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-# Note: This key should only be used for development and testing.
-SECRET_KEY = "x-8r)c(97bk5z*i36(km!2)9yjizawo-+m77on2k!b1(4k+-0h"
-# END SECRET CONFIGURATION
-
-
-# SITE CONFIGURATION
-# Hosts/domain names that are valid for this site
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
-# END SITE CONFIGURATION
-
-
-# FIXTURE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-FIXTURE_DIRS
-FIXTURE_DIRS = (
-    normpath(join(SITE_ROOT, 'fixtures')),
-)
-# END FIXTURE CONFIGURATION
 
 
 # TEMPLATE CONFIGURATION
@@ -134,7 +113,7 @@ TEMPLATE_DIRS = (
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#middleware-classes
 MIDDLEWARE_CLASSES = (
     # Default Django middleware.
-    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -188,10 +167,6 @@ LOCAL_APPS = (
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 # END APP CONFIGURATION
 
-INSTALLED_APPS += (
-    'opbeat.contrib.django',
-)
-
 
 # LOGGING CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
@@ -231,13 +206,6 @@ LOGGING = {
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 # END WSGI CONFIGURATION
 
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
-# SOUTH CONFIGURATION
-# See: http://south.readthedocs.org/en/latest/installation.html#configuring-your-django-installation
-INSTALLED_APPS += (
-    # Database migration helpers:
-    'south',
-)
-# Don't need to use South when setting up a test database.
-SOUTH_TESTS_MIGRATE = False
-# END SOUTH CONFIGURATION
+INTERNAL_IPS = ['127.0.0.1']
