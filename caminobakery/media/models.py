@@ -1,15 +1,18 @@
+from __future__ import unicode_literals
 import datetime
 
+from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class LivePhotoManager(models.Manager):
-    def get_query_set(self):
-        return super(LivePhotoManager, self).get_query_set().filter(
+    def get_queryset(self):
+        return super(LivePhotoManager, self).get_queryset().filter(
             status=self.model.LIVE_STATUS).filter(is_aggregated=True)
 
 
+@python_2_unicode_compatible
 class Photo(models.Model):
     LIVE_STATUS = 1
     DRAFT_STATUS = 2
@@ -59,7 +62,7 @@ class Photo(models.Model):
         verbose_name_plural = 'photos'
         ordering = ['-uploaded']
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s' % self.title
 
     @property
