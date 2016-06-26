@@ -1,5 +1,9 @@
+from __future__ import unicode_literals
+
+from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.sitemaps import ping_google
 
 from categories.models import Category
 from media.models import Photo
@@ -25,11 +29,12 @@ class LiveStoryManager(models.Manager):
     """
     Manager which will only fetch live entries.
     """
-    def get_query_set(self):
-        return super(LiveStoryManager, self).get_query_set().filter(
+    def get_queryset(self):
+        return super(LiveStoryManager, self).get_queryset().filter(
             status=self.model.LIVE_STATUS)
 
 
+@python_2_unicode_compatible
 class Story(models.Model):
     LIVE_STATUS = 1
     DRAFT_STATUS = 2

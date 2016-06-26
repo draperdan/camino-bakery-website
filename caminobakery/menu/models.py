@@ -1,14 +1,18 @@
+from __future__ import unicode_literals
+
+from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 
 from categories.models import Category
 
 
 class LiveItemManager(models.Manager):
-    def get_query_set(self):
-        return super(LiveItemManager, self).get_query_set().filter(
+    def get_queryset(self):
+        return super(LiveItemManager, self).get_queryset().filter(
             status=self.model.LIVE_STATUS).filter(is_available=True)
 
 
+@python_2_unicode_compatible
 class Item(models.Model):
     LIVE_STATUS = 1
     DRAFT_STATUS = 2
@@ -68,10 +72,11 @@ class Item(models.Model):
         """
         return self.item_type.size.all()
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s' % self.name
 
 
+@python_2_unicode_compatible
 class Size(models.Model):
     size = models.CharField(
         max_length=100,
@@ -93,10 +98,11 @@ class Size(models.Model):
         verbose_name_plural = 'Sizes'
         ordering = ['price']
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s / $%s' % (self.size, self.price)
 
 
+@python_2_unicode_compatible
 class ItemType(Category):
     size = models.ManyToManyField(Size, blank=True)
 
@@ -115,10 +121,11 @@ class ItemType(Category):
         """
         return Size.objects.filter(itemtype=self)
 
-    def __unicode__(self):
-        return self.title
+    def __str__(self):
+        return '{}'.format(self.title)
 
 
+@python_2_unicode_compatible
 class ItemTypeGroup(Category):
     item_types = models.ManyToManyField(
         ItemType,
@@ -142,14 +149,16 @@ class ItemTypeGroup(Category):
 
     def get_size_for_items(self):
         """
-        Returns sizes (and prices) for items for item type in an item type group.
+        Returns sizes (and prices) for items for item type in an item type
+        group.
         """
         return Size.objects.filter(itemtype__itemtypegroup=self)
 
-    def __unicode__(self):
-        return self.title
+    def __str__(self):
+        return '{}'.format(self.title)
 
 
+@python_2_unicode_compatible
 class BreadSchedule(models.Model):
     bread = models.ForeignKey(
         Item,
@@ -160,8 +169,8 @@ class BreadSchedule(models.Model):
     class Meta:
         verbose_name_plural = 'Bread schedules'
 
-    def __unicode__(self):
-        return unicode(self.bread)
+    def __str__(self):
+        return '{}'.format(self.bread)
 
     def is_available_daily(self):
         "Returns whether a bread is available every day of the week."
@@ -169,11 +178,12 @@ class BreadSchedule(models.Model):
             return 'Baked fresh every day'
 
 
+@python_2_unicode_compatible
 class Day(models.Model):
     day = models.CharField(
         max_length=50,
         help_text='Limited to 50 characters.'
     )
 
-    def __unicode__(self):
-        return unicode(self.day)
+    def __str__(self):
+        return '{}'.format(self.day)

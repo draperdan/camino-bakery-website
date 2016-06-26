@@ -7,7 +7,8 @@ env:
   - DJANGO_SETTINGS_MODULE=caminobakery.settings.test
 
 install:
-  - pip install -r requirements.txt
+  - pip install -r requirements/requirements.txt
+  - pip install -r requirements/test_requirements.txt
 
 # command to run tests, e.g. python setup.py test
 script:

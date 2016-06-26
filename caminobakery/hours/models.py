@@ -1,8 +1,12 @@
+from __future__ import unicode_literals
+
+from django.utils.encoding import python_2_unicode_compatible
 from datetime import date
 
 from django.db import models
 
 
+@python_2_unicode_compatible
 class Schedule(models.Model):
     MONDAY_SCHEDULE = 0
     TUESDAY_SCHEDULE = 1
@@ -26,6 +30,9 @@ class Schedule(models.Model):
 
     class Meta:
         ordering = ['day']
+
+    def __str__(self):
+        return '{}'.format(self.get_day_display())
 
     @property
     def close_time_today(self):

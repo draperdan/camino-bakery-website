@@ -1,14 +1,18 @@
+from __future__ import unicode_literals
+
+from django.utils.encoding import python_2_unicode_compatible
 from datetime import date
 
 from django.db import models
 
 
 class SpecialTodayManager(models.Manager):
-    def get_query_set(self):
-        return super(SpecialTodayManager, self).get_query_set().filter(
+    def get_queryset(self):
+        return super(SpecialTodayManager, self).get_queryset().filter(
             day_offered=date.today().weekday())
 
 
+@python_2_unicode_compatible
 class Special(models.Model):
     MONDAY_SPECIAL = 0
     TUESDAY_SPECIAL = 1
@@ -35,6 +39,9 @@ class Special(models.Model):
     class Meta:
         verbose_name_plural = 'Specials'
         ordering = ['day_offered']
+
+    def __str__(self):
+        return "{} on {}".format(self.description, self.day_offered)
 
     @property
     def special_today(self):

@@ -1,3 +1,6 @@
+from __future__ import unicode_literals
+
+from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 
 
@@ -11,6 +14,7 @@ class PublicAnnouncementManager(models.Manager):
                 is_public=True)
 
 
+@python_2_unicode_compatible
 class Announcement(models.Model):
     """
     A simple, site-wide announcement bar.
@@ -36,8 +40,8 @@ class Announcement(models.Model):
     objects = models.Manager()
     public = PublicAnnouncementManager()
 
-    def __unicode__(self):
-        return self.text
+    def __str__(self):
+        return '{}'.format(self.text)
 
     def save(self, *args, **kwargs):
         """
